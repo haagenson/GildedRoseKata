@@ -1,7 +1,7 @@
 package com.gildedrose;
 
 public class ItemUpdater {
-    private final int multiple;
+    protected final int multiple;
 
     public ItemUpdater() {
         multiple = 1;
@@ -13,15 +13,18 @@ public class ItemUpdater {
 
     int calculateQuality(Item item) {
         int newQuality = item.quality;
-        if (newQuality > 0) {
+        newQuality = newQuality + multiple;
+
+        if (item.sellIn < 0) {
             newQuality = newQuality + multiple;
         }
 
-        if (item.sellIn < 0) {
-            if (newQuality > 0) {
-                newQuality = newQuality + multiple;
-            }
+        if (newQuality < 0) {
+            newQuality = 0;
+        } else if (newQuality > 50) {
+            newQuality = 50;
         }
+
         return newQuality;
     }
 

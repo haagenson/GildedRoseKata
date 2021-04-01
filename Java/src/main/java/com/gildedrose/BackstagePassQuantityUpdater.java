@@ -1,6 +1,6 @@
 package com.gildedrose;
 
-public class BackstagePassQuantityUpdater extends IncreaseQuantityUpdater {
+public class BackstagePassQuantityUpdater extends ItemUpdater {
     @Override
     int calculateQuality(Item item) {
         if (item.sellIn < 0) {
@@ -9,12 +9,12 @@ public class BackstagePassQuantityUpdater extends IncreaseQuantityUpdater {
 
         int newQuality = super.calculateQuality(item);
 
-        if (item.sellIn < 10) {
-            newQuality = increaseQuality(newQuality);
+        if (item.sellIn < 10 && newQuality < 50) {
+           newQuality = newQuality + multiple;
         }
 
-        if (item.sellIn < 5) {
-            newQuality = increaseQuality(newQuality);
+        if (item.sellIn < 5 && newQuality < 50) {
+            newQuality = newQuality + multiple;
         }
 
         return newQuality;

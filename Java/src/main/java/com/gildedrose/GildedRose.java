@@ -13,7 +13,7 @@ class GildedRose {
         this.items = items;
         itemsMap.put("Sulfuras, Hand of Ragnaros", new LegendaryUpdater());
         itemsMap.put("Conjured Mana Cake", new ItemUpdater(-2));
-        itemsMap.put("Aged Brie", new IncreaseQuantityUpdater());
+        itemsMap.put("Aged Brie", new ItemUpdater(1));
         itemsMap.put("Backstage passes to a TAFKAL80ETC concert", new BackstagePassQuantityUpdater());
     }
 
