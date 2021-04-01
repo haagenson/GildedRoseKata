@@ -12,17 +12,16 @@ public class ItemUpdater {
     }
 
     int calculateQuality(Item item) {
-        int newQuality = item.quality;
-        newQuality = newQuality + multiple;
+        int newQuality = item.quality + multiple;
 
         if (item.sellIn < 0) {
             newQuality = newQuality + multiple;
         }
 
         if (newQuality < 0) {
-            newQuality = 0;
+            return 0;
         } else if (newQuality > 50) {
-            newQuality = 50;
+            return 50;
         }
 
         return newQuality;
