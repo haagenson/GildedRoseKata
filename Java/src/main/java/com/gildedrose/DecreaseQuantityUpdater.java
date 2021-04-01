@@ -15,12 +15,12 @@ public class DecreaseQuantityUpdater extends ItemUpdater {
     int calculateQuality(Item item) {
         int newQuality = item.quality;
         if (newQuality > 0) {
-            newQuality = newQuality - 1 * multiple;
+            newQuality = newQuality - multiple;
         }
 
         if (item.sellIn < 0) {
             if (newQuality > 0) {
-                newQuality = newQuality - 1 * multiple;
+                newQuality = newQuality - multiple;
             }
         }
         return newQuality;

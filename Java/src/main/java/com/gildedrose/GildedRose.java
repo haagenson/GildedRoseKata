@@ -28,12 +28,4 @@ class GildedRose {
             }
         }
     }
-
-    private int increaseQuality(Item item) {
-        int newQuality = item.quality;
-        if (newQuality < 50) {
-            newQuality = newQuality + 1;
-        }
-        return newQuality;
-    }
 }
