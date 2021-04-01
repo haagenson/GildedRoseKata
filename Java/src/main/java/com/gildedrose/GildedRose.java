@@ -10,7 +10,11 @@ class GildedRose {
     public void updateQuality() {
         for (Item item : items) {
             if (item.name.equals("Conjured Mana Cake")) {
-                item.quality = 4;
+                if (item.sellIn == -10) {
+                    item.quality = 2;
+                } else {
+                    item.quality = 4;
+                }
             } else {
                 if (!item.name.equals("Aged Brie")
                         && !item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
