@@ -2,7 +2,6 @@ package com.gildedrose;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.function.Function;
 
 class GildedRose {
     private static final String DEFAULT = "Default";
@@ -13,6 +12,8 @@ class GildedRose {
         this.items = items;
         itemsMap.put("Sulfuras, Hand of Ragnaros", new LegendaryUpdater());
         itemsMap.put("Conjured Mana Cake", new DecreaseQuantityUpdater(2));
+        itemsMap.put("Aged Brie", new IncreaseQuantityUpdater());
+        itemsMap.put("Backstage passes to a TAFKAL80ETC concert", new BackstagePassQuantityUpdater());
         itemsMap.put(DEFAULT, new DecreaseQuantityUpdater());
     }
 
@@ -21,31 +22,6 @@ class GildedRose {
             if (itemsMap.containsKey(item.name)) {
                 item.sellIn = itemsMap.get(item.name).calculateSellIn(item);
                 item.quality = itemsMap.get(item.name).calculateQuality(item);
-                continue;
-            }
-
-            if (item.name.equals("Aged Brie")) {
-                item.sellIn = item.sellIn - 1;
-                item.quality = increaseQuality(item);
-
-                if (item.sellIn < 0) {
-                    item.quality = increaseQuality(item);
-                }
-            } else if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-                item.sellIn = item.sellIn - 1;
-                item.quality = increaseQuality(item);
-
-                if (item.sellIn < 10) {
-                    item.quality = increaseQuality(item);
-                }
-
-                if (item.sellIn < 5) {
-                    item.quality = increaseQuality(item);
-                }
-
-                if (item.sellIn < 0) {
-                    item.quality = 0;
-                }
             } else {
                 item.sellIn = itemsMap.get(DEFAULT).calculateSellIn(item);
                 item.quality = itemsMap.get(DEFAULT).calculateQuality(item);
