@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.function.Function;
 
 class GildedRose {
+    private static final String DEFAULT = "Default";
     Item[] items;
     Map<String, ItemUpdater> itemsMap = new HashMap<>();
 
@@ -12,6 +13,7 @@ class GildedRose {
         this.items = items;
         itemsMap.put("Sulfuras, Hand of Ragnaros", new LegendaryUpdater());
         itemsMap.put("Conjured Mana Cake", new DecreaseQuantityUpdater(2));
+        itemsMap.put(DEFAULT, new DecreaseQuantityUpdater());
     }
 
     public void updateQuality() {
@@ -22,15 +24,15 @@ class GildedRose {
                 continue;
             }
 
-            item.sellIn = item.sellIn - 1;
-
             if (item.name.equals("Aged Brie")) {
+                item.sellIn = item.sellIn - 1;
                 item.quality = increaseQuality(item);
 
                 if (item.sellIn < 0) {
                     item.quality = increaseQuality(item);
                 }
             } else if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
+                item.sellIn = item.sellIn - 1;
                 item.quality = increaseQuality(item);
 
                 if (item.sellIn < 10) {
@@ -45,15 +47,8 @@ class GildedRose {
                     item.quality = 0;
                 }
             } else {
-                if (item.quality > 0) {
-                    item.quality = item.quality - 1;
-                }
-
-                if (item.sellIn < 0) {
-                    if (item.quality > 0) {
-                        item.quality = item.quality - 1;
-                    }
-                }
+                item.sellIn = itemsMap.get(DEFAULT).calculateSellIn(item);
+                item.quality = itemsMap.get(DEFAULT).calculateQuality(item);
             }
         }
     }
