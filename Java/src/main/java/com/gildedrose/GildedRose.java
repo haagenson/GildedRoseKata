@@ -11,6 +11,7 @@ class GildedRose {
     public GildedRose(Item[] items) {
         this.items = items;
         itemsMap.put("Sulfuras, Hand of Ragnaros", new LegendaryUpdater());
+        itemsMap.put("Conjured Mana Cake", new DecreaseQuantityUpdater(2));
     }
 
     public void updateQuality() {
@@ -23,17 +24,7 @@ class GildedRose {
 
             item.sellIn = item.sellIn - 1;
 
-            if (item.name.equals("Conjured Mana Cake")) {
-                if (item.quality > 0) {
-                    item.quality = item.quality - 2;
-                }
-
-                if (item.sellIn < 0) {
-                    if (item.quality > 0) {
-                        item.quality = item.quality - 2;
-                    }
-                }
-            } else if (item.name.equals("Aged Brie")) {
+            if (item.name.equals("Aged Brie")) {
                 item.quality = increaseQuality(item);
 
                 if (item.sellIn < 0) {
