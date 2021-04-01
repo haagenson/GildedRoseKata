@@ -166,4 +166,14 @@ class GildedRoseTest {
         assertEquals(2, gildedRose.items[0].quality);
     }
 
+    @Test
+    public void update_decreasesQualityTwiceAsFastAfterSellGoesNegativeForConjuredItems() {
+        Item[] items = new Item[] {
+                new Item("Conjured Mana Cake", 1, 6) };
+
+        GildedRose gildedRose = new GildedRose(items);
+        gildedRose.updateQuality();
+        assertEquals(2, gildedRose.items[0].quality);
+    }
+
 }
