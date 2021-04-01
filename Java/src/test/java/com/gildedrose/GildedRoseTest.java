@@ -169,7 +169,7 @@ class GildedRoseTest {
     @Test
     public void update_decreasesQualityTwiceAsFastAfterSellGoesNegativeForConjuredItems() {
         Item[] items = new Item[] {
-                new Item("Conjured Mana Cake", 1, 6) };
+                new Item("Conjured Mana Cake", 0, 6) };
 
         GildedRose gildedRose = new GildedRose(items);
         gildedRose.updateQuality();
