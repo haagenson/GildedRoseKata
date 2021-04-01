@@ -1,15 +1,23 @@
 package com.gildedrose;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Function;
+
 class GildedRose {
     Item[] items;
+    Map<String, ItemUpdater> itemsMap = new HashMap<>();
 
     public GildedRose(Item[] items) {
         this.items = items;
+        itemsMap.put("Sulfuras, Hand of Ragnaros", new LegendaryUpdater());
     }
 
     public void updateQuality() {
         for (Item item : items) {
-            if (item.name.equals("Sulfuras, Hand of Ragnaros")) {
+            if (itemsMap.containsKey(item.name)) {
+                item.sellIn = itemsMap.get(item.name).calculateSellIn(item);
+                item.quality = itemsMap.get(item.name).calculateQuality(item);
                 continue;
             }
 
