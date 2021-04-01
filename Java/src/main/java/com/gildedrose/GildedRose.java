@@ -10,7 +10,7 @@ class GildedRose {
     public void updateQuality() {
         for (Item item : items) {
             if (item.name.equals("Sulfuras, Hand of Ragnaros")) {
-                return;
+                continue;
             }
 
             item.sellIn = item.sellIn - 1;
