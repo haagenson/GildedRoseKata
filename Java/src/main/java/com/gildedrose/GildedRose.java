@@ -9,14 +9,14 @@ class GildedRose {
 
     public void updateQuality() {
         for (Item item : items) {
-            if (item.name.equals("Conjured Mana Cake")) {
+            if (item.name.equals("Sulfuras, Hand of Ragnaros")) {
+
+            } else if (item.name.equals("Conjured Mana Cake")) {
                 if (item.sellIn == -10) {
                     item.quality = 2;
                 } else {
                     item.quality = 4;
                 }
-            } else if (item.name.equals("Sulfuras, Hand of Ragnaros")) {
-
             } else if (item.name.equals("Aged Brie")) {
                 if (item.quality < 50) {
                     item.quality = item.quality + 1;
